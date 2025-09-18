@@ -1,0 +1,345 @@
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Music, Star, ArrowRight, Headphones, Piano } from 'lucide-react';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    budget: '',
+    message: ''
+  });
+
+  // Gérer le scroll vers l'élément avec l'ID contact-form
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#contact-form') {
+      // Attendre que le DOM soit complètement chargé
+      setTimeout(() => {
+        const element = document.getElementById('contact-form');
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }, []);
+
+  const services = [
+    {
+      icon: Music,
+      title: "Titre sur-mesure",
+      description: "Prod / composition + mix + master",
+      features: ["Univers taillée pour ta voix", "Direction artistique incluse", "Prod / Compo / Mix Sur mesure", "Studio ou à distance"],
+      price: "À partir de 800€",
+      duration: "Une semaine",
+      popular: false
+    },
+    {
+      icon: Piano,
+      title: "Production EP & Album", 
+      description: "Prod, DA, arrangements, mix & master",
+      features: ["Vision artistique globale et feuille de route", "Sessions régulières, suivi jusqu’au Mastering", "Planning modulable selon ton rythme", "Paiement étalé, livrables au fur et à mesure", "Toutes les étapes : Prod/Rec/Mix/Master"],
+      price: "À partir de 1000€/mois",
+      duration: "8-12 semaines",
+      popular: true
+    },
+    {
+      icon: Headphones,
+      title: "Mixage & Mastering",
+      description: "Donne à tes pistes un son pro",
+      features: ["Mix stéréo précis et musical", "Master prêt Spotify/Apple Music", "Corrections incluses", "Stems ou versions radio sur demande", "Délais souples selon agenda"],
+      price: "À partir de 250€/titre",
+      duration: "3-5 jours/titre",
+      popular: false
+    }
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would integrate with Resend API
+    console.log('Form submitted:', formData);
+    // Show success message
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <main className="pt-24">
+      {/* Services Section */}
+      <section className="py-20" style={{backgroundColor: '#f9f0e9'}}>
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-studio-blue mb-4">
+              Nos Services
+            </h1>
+            <p className="text-xl text-studio-blue/80 max-w-3xl mx-auto">
+              Chaque projet est unique. On s'adapte à ton univers, ton budget et ton rythme. Écris-nous pour en parler.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <Card key={index} className={`relative overflow-hidden group hover:scale-105 transition-all duration-300 h-full flex flex-col ${service.popular ? 'ring-2 ring-studio-orange' : ''} bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl hover:shadow-3xl`}>
+                  {service.popular && (
+                    <>
+                      {/* Badge Popular avec effet de brillance */}
+                      <div className="absolute top-4 right-4 z-10">
+                        <div className="relative overflow-hidden rounded-full">
+                          <div className="bg-gradient-to-r from-studio-orange via-yellow-400 to-studio-orange text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <span className="relative z-10">⭐ POPULAR ⭐</span>
+                          </div>
+                          {/* Effet de brillance qui traverse */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full transform -skew-x-12 animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Étoiles décoratives autour */}
+                      <div className="absolute top-2 right-2 text-studio-orange animate-bounce" style={{animationDelay: '0.5s'}}>
+                        <Star className="h-2 w-2 fill-current" />
+                      </div>
+                      <div className="absolute top-6 right-1 text-studio-orange animate-bounce" style={{animationDelay: '1s'}}>
+                        <Star className="h-2 w-2 fill-current" />
+                      </div>
+                      <div className="absolute top-1 right-6 text-studio-orange animate-bounce" style={{animationDelay: '1.5s'}}>
+                        <Star className="h-2 w-2 fill-current" />
+                      </div>
+                    </>
+                  )}
+                  
+                  <CardContent className="p-8 text-center flex flex-col h-full">
+                    <div className="bg-white/30 backdrop-blur-sm w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                      <IconComponent className="h-8 w-8 text-studio-orange" />
+                    </div>
+                    
+                    <h3 className="font-playfair text-2xl font-bold text-studio-blue mb-4">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-studio-blue/80 mb-6 leading-relaxed flex-grow">
+                      {service.description}
+                    </p>
+
+                    <div className="space-y-3 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-studio-blue/70 text-sm">
+                          <div className="w-2 h-2 bg-studio-orange rounded-full mr-3"></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="border-t border-studio-blue/20 pt-6 mt-auto">
+                      <div className="text-3xl font-bold text-studio-orange mb-2">
+                        {service.price}
+                      </div>
+                      <div className="text-studio-blue/60 text-sm mb-6">
+                        {service.duration}
+                      </div>
+                      
+                      <Button 
+                        asChild
+                        className="w-full bg-studio-orange hover:bg-studio-orange/90 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        <a href="#contact-form">
+                          Demander un devis
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Bandeau défilant sous les cartes de tarifs */}
+          <div className="mt-12 overflow-hidden bg-white/40 backdrop-blur border-y border-studio-blue/20 py-3">
+            <div className="whitespace-nowrap flex animate-scroll">
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+              <span className="mx-6 text-studio-blue font-medium">
+                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section id="contact-form" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-playfair text-4xl md:text-5xl font-bold text-studio-blue mb-4">
+                Parlons de votre projet
+              </h2>
+              <p className="text-xl text-foreground/70">
+                Remplissez le formulaire ci-dessous et nous vous recontacterons dans les 24h
+              </p>
+            </div>
+
+            <div className="glass-card p-8 md:p-12 rounded-3xl">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Nom complet *</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className="glass-button border-studio-blue/30"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className="glass-button border-studio-blue/30"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Téléphone</Label>
+                    <Input
+                      id="phone"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      className="glass-button border-studio-blue/30"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="service">Service souhaité *</Label>
+                    <Select onValueChange={(value) => handleInputChange('service', value)}>
+                      <SelectTrigger className="glass-button border-studio-blue/30">
+                        <SelectValue placeholder="Choisissez un service" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white border border-studio-blue/20 shadow-xl">
+                        <SelectItem value="ep">Production EP</SelectItem>
+                        <SelectItem value="album">Production Album</SelectItem>
+                        <SelectItem value="mixage">Mixage & Mastering</SelectItem>
+                        <SelectItem value="autre">Autre</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="budget">Budget approximatif</Label>
+                  <Select onValueChange={(value) => handleInputChange('budget', value)}>
+                    <SelectTrigger className="glass-button border-studio-blue/30">
+                      <SelectValue placeholder="Sélectionnez votre budget" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border border-studio-blue/20 shadow-xl">
+                      <SelectItem value="0-1000">0€ - 1000€</SelectItem>
+                      <SelectItem value="1000-3000">1000€ - 3000€</SelectItem>
+                      <SelectItem value="3000-5000">3000€ - 5000€</SelectItem>
+                      <SelectItem value="5000-10000">5000€ - 10000€</SelectItem>
+                      <SelectItem value="10000+">10000€+</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">Détails du projet *</Label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    className="glass-button border-studio-blue/30 min-h-[120px]"
+                    placeholder="Décrivez-nous votre projet, vos attentes, vos références..."
+                    required
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  size="lg"
+                  className="w-full bg-studio-orange hover:bg-studio-orange/90 text-white py-4 text-lg"
+                >
+                  Envoyer ma demande
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mini FAQ */}
+      <section className="pb-24">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-studio-blue mb-6 text-center">FAQ rapide</h3>
+            <div className="glass-card rounded-2xl p-4 md:p-6">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-left">Je pars de zéro, c’est ok ?</AccordionTrigger>
+                  <AccordionContent>Oui. On démarre par un brief et une première maquette rapide.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-left">Et si j’ai déjà une instru ?</AccordionTrigger>
+                  <AccordionContent>On peut l’améliorer, réarranger ou repartir d’elle</AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className="text-left">Je veux des musiciens réels ?</AccordionTrigger>
+                  <AccordionContent>Possible. On te propose des options selon le budget.</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default Contact;

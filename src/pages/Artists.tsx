@@ -4,15 +4,15 @@ import headerArtists from '@/assets/headerArtists.jpeg';
 const Artists = () => {
   const artists = [
     { name: "Austin.", genre: "Rap/Hip-Hop", image: "./artists/austin..png", description: "Un rappeur au croisement du rap et du rock." },
-    { name: "SevK", genre: "Rap/Hip-Hop", image: "./artists/", description: "Un rappeur authentique qui mêle textes bruts, sonorités hispaniques et une touche romantique." },
+    { name: "SevK", genre: "Rap/Hip-Hop", image: "./artists/SevK.png", description: "Un rappeur authentique qui mêle textes bruts, sonorités hispaniques et une touche romantique." },
     { name: "Kiara", genre: "RnB/Soul", image: "./artists/", description: "Une voix moderne inspirée par SZA, dans un univers RnB vibrant et intime." },
     { name: "Pénélope", genre: "Pop Electronique", image: "./artists/penelope.jpeg", description: "Une artiste pop électronique immersive, teintée d'influences jeux vidéo." },
-    { name: "Solen", genre: "Pop/Neo-Soul", image: "./artists/", description: "Une artiste indie-pop urbaine aux allures mélodiques, inspirée par la néo soul." },
+    { name: "Solen", genre: "Pop/Neo-Soul", image: "./artists/SOlen.png", description: "Une artiste indie-pop urbaine aux allures mélodiques, inspirée par la néo soul." },
     { name: "Tifen", genre: "Pop Urbaine", image: "./artists/TIF.jpg", description: "Une artiste pop urbaine poétique, portée par des textes puissants et une voix singulière." },
     { name: "Tigre", genre: "Pop Electronique", image: "./artists/tigre.jpg", description: "Une artiste pop électronique bullaire : intime, directe, habitée." },
     { name: "Audrey", genre: "Pop Soul", image: "./artists/", description: "Entre Beatles et Amy Winehouse, une pop soul organique aux couleurs rétro et psychadélique." },
     { name: "Antoine Crop", genre: "Néo Classique", image: "./artists/antoine.jpeg", description: "Un univers néo-classique cinématographique, entre piano et cordes, influencé par Max Richter." },
-    { name: "Gerson", genre: "", image: "./artists/", description: "" },
+    { name: "Gerson", genre: "Pop/RnB", image: "./artists/Gerson.png", description: "Un son qui fusionne l’énergie de la pop et la sensualité du RnB" },
   ];
 
   // État pour la pagination
@@ -77,10 +77,10 @@ const Artists = () => {
                 Music
               </h1>
               <p className="text-xl text-foreground/80 leading-relaxed">
-                « On travaille avec des rappeurs, des chanteuses, des auteurs et des musiciens aux univers variés. 
+                  On travaille avec des rappeurs, des chanteuses, des auteurs et des musiciens aux univers variés. 
                   Certains ont une vision précise, d’autres apportent une intuition, une voix ou une énergie. 
-                  Quel que soit le style, boom bap, trap, pop urbaine, afro, chanson ou hybride, chaque projet est construit sur-mesure, 
-                  avec un regard exigeant qui respecte l’identité de l’artiste. »
+                  Quel que soit le style de musique (Urbain, Pop, Electro, Néo classique...) chaque projet est construit sur-mesure, 
+                  en respectant les influences et l’identité de l’artiste.
               </p>
             </div>
           </div>
@@ -154,9 +154,9 @@ const Artists = () => {
 
                     {/* Description centrée qui disparaît au hover */}
                     <div className="absolute inset-0 flex items-center justify-center p-6 z-10 group-hover:opacity-0 transition-opacity duration-300">
-                      <p className="text-studio-blue text-center font-medium leading-relaxed">
+                      <i><p className="text-studio-blue text-center font-medium leading-relaxed">
                         {artist.description}
-                      </p>
+                      </p></i>
                     </div>
 
                     {/* Nom et genre qui disparaissent au hover */}

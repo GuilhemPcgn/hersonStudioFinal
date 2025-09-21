@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import studioAbout from '@/assets/AboutSection.jpeg';
-import hersonBio from '@/assets/hersonbio.jpeg';
+import hersonBio from '@/assets/hersonbio.jpg';
 
 const AboutSection = () => {
   return (
@@ -58,7 +58,7 @@ const AboutSection = () => {
               <img
                 src={hersonBio}
                 alt="Herson - Musicien compositeur et producteur"
-                className="w-full aspect-square object-cover rounded-2xl"
+                className="w-full aspect-square object-cover object-left rounded-2xl"
               />
             </div>
           </div>
@@ -70,20 +70,20 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-4 text-lg text-foreground/80 leading-relaxed">
               <p>
-                Passionné de musique depuis l'enfance, j'ai développé une expertise complète 
-                dans la composition, l'arrangement et la production musicale. 
-                Mon parcours m'a amené à travailler avec de nombreux artistes, 
-                explorant différents styles et univers sonores.
+                Derrière Herson Studio, il y a Herson. Passionné de musique depuis l’enfance, 
+                il a développé une expertise complète en composition, arrangement et production. 
+                Son parcours l’a conduit de la musique de film à la collaboration avec des artistes aux univers très variés.
               </p>
               <p>
-                Fort de cette expérience, j'ai créé Herson Studio pour offrir un accompagnement 
-                personnalisé et professionnel. Mon approche se base sur l'écoute, 
-                la compréhension de ton univers artistique et la recherche constante 
-                de ce qui te rend unique.
+                Il a créé Herson Studio pour offrir un accompagnement sur mesure et professionnel. 
+                Il résume ainsi sa vision : <i>« Mon approche se base sur l’humain : écouter, comprendre les influences 
+                et m’adapter pour développer un univers unique. »</i>
               </p>
               <p>
-                Que tu sois débutant ou artiste confirmé, mon objectif est de t'aider 
-                à concrétiser ta vision musicale avec authenticité et professionnalisme.
+                Cette philosophie nourrit son travail au quotidien. 
+                Plus qu’un producteur, Herson est un partenaire de création : 
+                ensemble, vous façonnez une musique authentique et professionnelle, 
+                qui porte ta signature et ne ressemble à aucune autre.
               </p>
             </div>
           </div>

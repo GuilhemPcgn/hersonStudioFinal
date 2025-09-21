@@ -50,7 +50,7 @@ const Contact = () => {
       title: "Production EP & Album", 
       description: "Prod, DA, arrangements, mix & master",
       features: ["Vision artistique globale et feuille de route", "Sessions régulières, suivi jusqu’au Mastering", "Planning modulable selon ton rythme", "Paiement étalé, livrables au fur et à mesure", "Toutes les étapes : Prod/Rec/Mix/Master"],
-      price: "À partir de 1000€/mois",
+      price: "Devis sur mesure",
       duration: "8-12 semaines",
       popular: true
     },
@@ -213,16 +213,19 @@ const Contact = () => {
               <h2 className="font-playfair text-4xl md:text-5xl font-bold text-studio-blue mb-4">
                 Parlons de votre projet
               </h2>
-              <p className="text-xl text-foreground/70">
+              <p className="text-xl text-gray-700/70">
                 Remplissez le formulaire ci-dessous et nous vous recontacterons dans les 24h
               </p>
             </div>
 
-            <div className="glass-card p-8 md:p-12 rounded-3xl">
+            <div className="bg-gradient-to-b from-gray-900/80 to-black/80 border border-gray-700/50 backdrop-blur-sm p-8 md:p-12 rounded-3xl relative overflow-hidden">
+              {/* Effet de fond décoratif */}
+              <div className="absolute inset-0 bg-gradient-to-r from-studio-blue/10 via-transparent to-studio-orange/10"></div>
+              <div className="relative z-10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nom complet *</Label>
+                    <Label htmlFor="name" className="text-white">Nom complet *</Label>
                     <Input
                       id="name"
                       value={formData.name}
@@ -233,7 +236,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
+                    <Label htmlFor="email" className="text-white">Email *</Label>
                     <Input
                       id="email"
                       type="email"
@@ -247,7 +250,7 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Téléphone</Label>
+                    <Label htmlFor="phone" className="text-white">Téléphone</Label>
                     <Input
                       id="phone"
                       value={formData.phone}
@@ -257,7 +260,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="service">Service souhaité *</Label>
+                    <Label htmlFor="service" className="text-white">Service souhaité *</Label>
                     <Select onValueChange={(value) => handleInputChange('service', value)}>
                       <SelectTrigger className="glass-button border-studio-blue/30">
                         <SelectValue placeholder="Choisissez un service" />
@@ -273,7 +276,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="budget">Budget approximatif</Label>
+                  <Label htmlFor="budget" className="text-white">Budget approximatif</Label>
                   <Select onValueChange={(value) => handleInputChange('budget', value)}>
                     <SelectTrigger className="glass-button border-studio-blue/30">
                       <SelectValue placeholder="Sélectionnez votre budget" />
@@ -289,7 +292,7 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Détails du projet *</Label>
+                  <Label htmlFor="message" className="text-white">Détails du projet *</Label>
                   <Textarea
                     id="message"
                     value={formData.message}
@@ -303,12 +306,13 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   size="lg"
-                  className="w-full bg-studio-orange hover:bg-studio-orange/90 text-white py-4 text-lg"
+                  className="w-full bg-studio-orange/50 hover:bg-studio-orange/90 text-white py-4 text-lg"
                 >
                   Envoyer ma demande
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </form>
+              </div>
             </div>
           </div>
         </div>
@@ -318,7 +322,7 @@ const Contact = () => {
       <section className="pb-24">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold text-studio-blue mb-6 text-center">FAQ rapide</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-studio-blue mb-6 text-center">FAQ</h3>
             <div className="glass-card rounded-2xl p-4 md:p-6">
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">

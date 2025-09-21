@@ -9,6 +9,7 @@ const Synchro = () => {
       { name: "Pour l'honneur", genre: "Film", image: "./synchro/honneur.jpg" },
       { name: "On voulait tout casser", genre: "Film", image: "./synchro/toutcasser.webp" },
       { name: "Fils à Jo", genre: "Film", image: "./synchro/filsajo.jpg" },
+      { name: "Moreeti", genre: "Documentaire", image: "./synchro/Moreeti.jpg" },
     ];
 
     const chainesTvPublicites = [
@@ -111,9 +112,9 @@ const Synchro = () => {
                   Synchro
                 </h1>
                 <p className="text-xl text-foreground/80 leading-relaxed">
-                « Sous mon nom, Roméo Guillard, j’ai signé la musique originale de plusieurs longs-métrages, publicités, séries et documentaires.
+                  Sous mon nom, Roméo Guillard, j’ai signé la musique originale de plusieurs longs-métrages, publicités, séries et documentaires.
                    Chaque projet est conçu sur-mesure, en étroite collaboration avec les réalisateurs et les agences, 
-                   pour créer des univers riches et modernes adaptés à chaque format et à chaque audience. »
+                   pour créer des univers riches et modernes adaptés à chaque format et à chaque audience.
                 </p>
               </div>
             </div>

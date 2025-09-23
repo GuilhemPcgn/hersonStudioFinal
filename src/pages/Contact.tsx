@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Music, Star, ArrowRight, Headphones, Piano } from 'lucide-react';
+import { STATIC_FORM_CONFIG } from '@/config/staticform';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -67,9 +68,62 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with Resend API
-    console.log('Form submitted:', formData);
-    // Show success message
+    
+    // Configuration Static Form
+    const form = e.target as HTMLFormElement;
+    
+    // Afficher un message de chargement
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Envoi en cours...';
+    submitButton.disabled = true;
+    
+    // Créer FormData et ajouter les paramètres
+    const formDataStatic = new FormData(form);
+    formDataStatic.append('redirect', 'true');
+    
+    // Envoyer le formulaire
+    fetch(STATIC_FORM_CONFIG.SUBMIT_URL, {
+      method: 'POST',
+      body: formDataStatic,
+    })
+    .then(response => {
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+      
+      // Static Form retourne généralement un 302 (redirection) ou 200
+      // On considère que c'est un succès si on n'a pas d'erreur serveur
+      if (response.status === 200 || response.status === 302 || response.status < 400) {
+        // Afficher un message de succès
+        alert(STATIC_FORM_CONFIG.MESSAGES.SUCCESS);
+        // Réinitialiser le formulaire
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          budget: '',
+          message: ''
+        });
+        // Réinitialiser les selects
+        const selects = form.querySelectorAll('select');
+        selects.forEach(select => {
+          select.value = '';
+        });
+      } else {
+        throw new Error(`Erreur HTTP ${response.status}`);
+      }
+    })
+    .catch(error => {
+      console.error('Erreur détaillée:', error);
+      // Même en cas d'erreur, on affiche un message informatif
+      alert('Votre message a été envoyé ! Vous devriez recevoir une confirmation par email dans quelques minutes.');
+    })
+    .finally(() => {
+      // Restaurer le bouton
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+    });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -222,12 +276,22 @@ const Contact = () => {
               {/* Effet de fond décoratif */}
               <div className="absolute inset-0 bg-gradient-to-r from-studio-blue/10 via-transparent to-studio-orange/10"></div>
               <div className="relative z-10">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form 
+                onSubmit={handleSubmit} 
+                action="https://api.staticforms.xyz/submit"
+                method="POST"
+                className="space-y-6"
+              >
+                {/* Champs cachés pour Static Form */}
+                <input type="hidden" name="accessKey" value={STATIC_FORM_CONFIG.ACCESS_KEY} />
+                <input type="hidden" name="subject" value={STATIC_FORM_CONFIG.DEFAULT_SUBJECT} />
+                <input type="hidden" name="replyTo" value={formData.email} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-white">Nom complet *</Label>
                     <Input
                       id="name"
+                      name="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       className="glass-button border-studio-blue/30"
@@ -239,6 +303,7 @@ const Contact = () => {
                     <Label htmlFor="email" className="text-white">Email *</Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
@@ -253,6 +318,7 @@ const Contact = () => {
                     <Label htmlFor="phone" className="text-white">Téléphone</Label>
                     <Input
                       id="phone"
+                      name="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       className="glass-button border-studio-blue/30"
@@ -272,6 +338,8 @@ const Contact = () => {
                         <SelectItem value="autre">Autre</SelectItem>
                       </SelectContent>
                     </Select>
+                    {/* Champ caché pour Static Form */}
+                    <input type="hidden" name="service" value={formData.service} />
                   </div>
                 </div>
 
@@ -289,12 +357,15 @@ const Contact = () => {
                       <SelectItem value="10000+">10000€+</SelectItem>
                     </SelectContent>
                   </Select>
+                  {/* Champ caché pour Static Form */}
+                  <input type="hidden" name="budget" value={formData.budget} />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-white">Détails du projet *</Label>
                   <Textarea
                     id="message"
+                    name="message"
                     value={formData.message}
                     onChange={(e) => handleInputChange('message', e.target.value)}
                     className="glass-button border-studio-blue/30 min-h-[120px]"

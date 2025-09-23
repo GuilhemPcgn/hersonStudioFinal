@@ -22,7 +22,8 @@ const SocialMedia = () => {
         </svg>
       ),
       bgColor: 'bg-black',
-      hoverColor: 'hover:bg-gray-800'
+      hoverColor: 'hover:bg-gray-800',
+      borderColor: 'border-2 border-white'
     },
     {
       name: 'LinkedIn',
@@ -66,7 +67,7 @@ const SocialMedia = () => {
           <a
             key={index}
             href={social.href}
-            className={`group relative w-12 h-12 ${social.bgColor} ${social.hoverColor} rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
+            className={`group relative w-12 h-12 ${social.bgColor} ${social.hoverColor} ${social.borderColor || ''} rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
             aria-label={social.name}
             title={social.name}
           >

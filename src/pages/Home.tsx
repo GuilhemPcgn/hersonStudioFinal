@@ -1,9 +1,6 @@
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProcessSection from '@/components/ProcessSection';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Mail } from 'lucide-react';
 
 const ArtistGallery = () => {
   // Placeholder artists - you can replace with real data

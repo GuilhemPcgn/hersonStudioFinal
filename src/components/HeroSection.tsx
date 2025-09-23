@@ -3,8 +3,7 @@ import { Play, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import studioHero from '@/assets/posterHero.png';
-import VideoHero from '@/assets/VideoHero.mp4';
-import VideoHeroWebm from '@/assets/VideoHero.webm';
+import VideoHero from '@/assets/VideoHero.webm';
 
 
 const HeroSection = () => {
@@ -30,8 +29,7 @@ useEffect(() => {
           poster={studioHero}
           className="w-full h-full object-cover"
         >
-          <source src={VideoHero} type="video/mp4" />
-          <source src={VideoHeroWebm} type="video/webm" />
+          <source src={VideoHero} type="video/webm" />
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
         <div className="absolute inset-0 hero-overlay"></div>

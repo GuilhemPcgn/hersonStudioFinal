@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Music, Star, ArrowRight, Headphones, Piano } from 'lucide-react';
 import { STATIC_FORM_CONFIG } from '@/config/staticform';
 
@@ -16,7 +17,8 @@ const Contact = () => {
     phone: '',
     service: '',
     budget: '',
-    message: ''
+    message: '',
+    acceptDataUsage: false
   });
 
   // Gérer le scroll vers l'élément avec l'ID contact-form
@@ -69,6 +71,12 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Vérifier que la checkbox d'acceptation est cochée
+    if (!formData.acceptDataUsage) {
+      alert('Veuillez accepter l\'utilisation de vos données pour continuer.');
+      return;
+    }
+    
     // Configuration Static Form
     const form = e.target as HTMLFormElement;
     
@@ -103,7 +111,8 @@ const Contact = () => {
           phone: '',
           service: '',
           budget: '',
-          message: ''
+          message: '',
+          acceptDataUsage: false
         });
         // Réinitialiser les selects
         const selects = form.querySelectorAll('select');
@@ -126,7 +135,7 @@ const Contact = () => {
     });
   };
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
@@ -372,6 +381,18 @@ const Contact = () => {
                     placeholder="Décrivez-nous votre projet, vos attentes, vos références..."
                     required
                   />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Checkbox 
+                    id="acceptDataUsage"
+                    checked={formData.acceptDataUsage}
+                    onCheckedChange={(checked) => handleInputChange('acceptDataUsage', checked || false)}
+                    style={{border: '2px solid #fff'}}
+                  />
+                  <Label htmlFor="acceptDataUsage" className="text-white text-sm">
+                    J'accepte que mes données soient utilisées pour être recontacté(e) dans le cadre de ma demande
+                  </Label>
                 </div>
 
                 <Button 

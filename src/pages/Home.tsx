@@ -10,12 +10,12 @@ const ArtistGallery = () => {
   const artists = [
     { name: "Austin.", image: "./artists/austin..png" },
     { name: "SevK", image: "./artists/SevK.png" },
-    // { name: "Kiara", image: "./artists/" },
+    { name: "Kiara", image: "./artists/KIARA.jpg" },
     { name: "Pénélope", image: "./artists/penelope.jpeg" },
     { name: "Solen", image: "./artists/SOlen.png" },
     { name: "Tifen", image: "./artists/TIF.jpg" },
     { name: "Tigre", image: "./artists/tigre.jpg" },
-    // { name: "Audrey", image: "./artists/" },
+    { name: "Audrey", image: "./artists/Audrey.jpg" },
     { name: "Antoine Crop", image: "./artists/antoine.jpeg" },
     { name: "Gerson", image: "./artists/Gerson.png" },
   ];
@@ -49,6 +49,7 @@ const ArtistGallery = () => {
                       src={artist.image} 
                       alt="Photo de l'artiste"
                       className="w-full h-full object-cover"
+                      style={artist.name === "Gerson" ? { objectPosition: 'center top' } : {}}
                     />
                     {/* Overlay blanc avec nom de l'artiste */}
                     {/* <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-3">

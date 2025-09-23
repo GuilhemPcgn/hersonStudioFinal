@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Artists from "./pages/Artists";
 import Synchro from "./pages/Synchro";
 import Contact from "./pages/Contact";
+import LegalMentions from "./pages/LegalMentions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import { useScrollToTop } from "./hooks/use-scroll-to-top";
 
@@ -26,6 +28,8 @@ const AppContent = () => {
         <Route path="/music" element={<Artists />} />
         <Route path="/synchro" element={<Synchro />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/mentions-legales" element={<LegalMentions />} />
+        <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -79,14 +79,26 @@ const Footer = () => {
               </span>
             </div>
             
-            <div className="flex items-center space-x-6 text-sm text-gray-300">
-              <Link to="/contact" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
-                Devis gratuit
-              </Link>
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-300">
+              <div className="flex items-center space-x-6">
+                <Link to="/contact" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
+                  Devis gratuit
+                </Link>
+                <span className="text-studio-orange">•</span>
+                <Link to="/artistes" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
+                  Nos artistes
+                </Link>
+              </div>
               <span className="text-studio-orange">•</span>
-              <Link to="/artistes" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
-                Nos artistes
-              </Link>
+              <div className="flex items-center space-x-6">
+                <Link to="/mentions-legales" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
+                  Mentions légales
+                </Link>
+                <span className="text-studio-orange">•</span>
+                <Link to="/politique-confidentialite" className="hover:text-studio-orange transition-colors hover:scale-105 transform duration-200">
+                  Politique de confidentialité
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Play, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -5,12 +6,23 @@ import studioHero from '@/assets/posterHero.png';
 import VideoHero from '@/assets/VideoHero.mp4';
 import VideoHeroWebm from '@/assets/VideoHero.webm';
 
+
 const HeroSection = () => {
+
+const videoRef = useRef(null);
+
+useEffect(() => {
+  if (videoRef.current) {
+    videoRef.current.playbackRate = 0.75;
+  }
+}, []);
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video 
+          ref={videoRef}
           autoPlay
           muted
           loop

@@ -13,6 +13,7 @@ import LegalMentions from "./pages/LegalMentions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import { useScrollToTop } from "./hooks/use-scroll-to-top";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,8 @@ const AppContent = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
+
+      <SpeedInsights />
     </>
   );
 };

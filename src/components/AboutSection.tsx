@@ -30,12 +30,6 @@ const AboutSection = () => {
                 trouver ce qui fait ta singularité et créer une musique qui marque.
               </p>
             </div>
-            {/* <Button 
-              size="lg" 
-              className="bg-studio-orange hover:bg-studio-orange/90 text-white px-8 py-4 rounded-xl"
-            >
-              En savoir plus sur notre équipe
-            </Button> */}
           </div>
 
           {/* Image */}

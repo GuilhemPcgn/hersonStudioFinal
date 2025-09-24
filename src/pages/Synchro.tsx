@@ -4,21 +4,21 @@ import headerSynchro from '@/assets/headerSynchro.jpg';
 const Synchro = () => {
     // Séparation des données en deux catégories
     const longsMetrages = [
-      { name: "J'adore ce que vous faites", genre: "Film", image: "./synchro/jadore.jpg" },
-      { name: "Papi Sitter", genre: "Film", image: "./synchro/papisitter.jpg" },
-      { name: "Pour l'honneur", genre: "Film", image: "./synchro/honneur.jpg" },
+      { name: "J'adore ce que vous faites", genre: "Film", image: "./synchro/jadore.webp" },
+      { name: "Papi Sitter", genre: "Film", image: "./synchro/papisitter.webp" },
+      { name: "Pour l'honneur", genre: "Film", image: "./synchro/honneur.webp" },
       { name: "On voulait tout casser", genre: "Film", image: "./synchro/toutcasser.webp" },
-      { name: "Fils à Jo", genre: "Film", image: "./synchro/filsajo.jpg" },
-      { name: "Moreeti", genre: "Documentaire", image: "./synchro/Moreeti.jpg" },
+      { name: "Fils à Jo", genre: "Film", image: "./synchro/filsajo.webp" },
+      { name: "Moreeti", genre: "Documentaire", image: "./synchro/Moreeti.webp" },
     ];
 
     const chainesTvPublicites = [
-      { name: "France TV", genre: "Publicité", image: "./synchro/francetv.jpg" },
-      { name: "Canal+", genre: "Publicité", image: "./synchro/canal+.jpg" },
-      { name: "OTAN/NATO", genre: "Publicité", image: "./synchro/nato.png" },
-      { name: "Coupe du Monde de Rugby 2023", genre: "Publicité", image: "./synchro/cdmrugby.jpg" },
+      { name: "France TV", genre: "Publicité", image: "./synchro/francetv.webp" },
+      { name: "Canal+", genre: "Publicité", image: "./synchro/canal+.webp" },
+      { name: "OTAN/NATO", genre: "Publicité", image: "./synchro/nato.webp" },
+      { name: "Coupe du Monde de Rugby 2023", genre: "Publicité", image: "./synchro/cdmrugby.webp" },
       { name: "Vélo Club Tour de France", genre: "Générique", image: "./synchro/tourdefrance.webp" },
-      { name: "TF1", genre: "Publicité", image: "./synchro/tf1.avif" },
+      { name: "TF1", genre: "Publicité", image: "./synchro/tf1.webp" },
     ];
 
     // État pour la catégorie actuelle (0 = Longs métrages, 1 = Chaînes TV & Publicités)

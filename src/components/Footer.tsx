@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SocialMedia from './SocialMedia';
+import LogoSimple from '@/assets/LogoSimple.png';
 
 const Footer = () => {
   const navigation = [
@@ -70,7 +71,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 group">
               <img 
-                src="/src/assets/LogoSimple.png" 
+                src={LogoSimple} 
                 alt="Logo Herson Studio" 
                 className="h-8 w-8 opacity-80 group-hover:opacity-100 transition-opacity duration-300" 
               />

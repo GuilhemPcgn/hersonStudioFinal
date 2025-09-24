@@ -3,16 +3,16 @@ import headerArtists from '@/assets/headerArtists.jpeg';
 
 const Artists = () => {
   const artists = [
-    { name: "Austin.", genre: "Rap/Hip-Hop", image: "./artists/austin..png", description: "Un rappeur au croisement du rap et du rock." },
-    { name: "SevK", genre: "Rap/Hip-Hop", image: "./artists/SevK.png", description: "Un rappeur authentique qui mêle textes bruts, sonorités hispaniques et une touche romantique." },
-    { name: "Kiara", genre: "RnB/Soul", image: "./artists/KIARA.jpg", description: "Une voix moderne inspirée par SZA, dans un univers RnB vibrant et intime." },
-    { name: "Pénélope", genre: "Pop Electronique", image: "./artists/penelope.jpeg", description: "Une artiste pop électronique immersive, teintée d'influences jeux vidéo." },
-    { name: "Solen", genre: "Pop/Neo-Soul", image: "./artists/SOlen.png", description: "Une artiste indie-pop urbaine aux allures mélodiques, inspirée par la néo soul." },
-    { name: "Tifen", genre: "Pop Urbaine", image: "./artists/TIF.jpg", description: "Une artiste pop urbaine poétique, portée par des textes puissants et une voix singulière." },
-    { name: "Tigre", genre: "Pop Electronique", image: "./artists/tigre.jpg", description: "Une artiste pop électronique bullaire : intime, directe, habitée." },
-    { name: "Audrey", genre: "Pop Soul", image: "./artists/Audrey.jpg", description: "Entre Beatles et Amy Winehouse, une pop soul organique aux couleurs rétro et psychadélique." },
-    { name: "Antoine Crop", genre: "Néo Classique", image: "./artists/antoine.jpeg", description: "Un univers néo-classique cinématographique, entre piano et cordes, influencé par Max Richter." },
-    { name: "Gerson", genre: "Pop/RnB", image: "./artists/Gerson.png", description: "Un son qui fusionne l’énergie de la pop et la sensualité du RnB" },
+    { name: "Austin.", genre: "Rap/Hip-Hop", image: "./artists/austin..webp", description: "Un rappeur au croisement du rap et du rock." },
+    { name: "SevK", genre: "Rap/Hip-Hop", image: "./artists/SevK.webp", description: "Un rappeur authentique qui mêle textes bruts, sonorités hispaniques et une touche romantique." },
+    { name: "Kiara", genre: "RnB/Soul", image: "./artists/KIARA.webp", description: "Une voix moderne inspirée par SZA, dans un univers RnB vibrant et intime." },
+    { name: "Pénélope", genre: "Pop Electronique", image: "./artists/penelope.webp", description: "Une artiste pop électronique immersive, teintée d'influences jeux vidéo." },
+    { name: "Solen", genre: "Pop/Neo-Soul", image: "./artists/SOlen.webp", description: "Une artiste indie-pop urbaine aux allures mélodiques, inspirée par la néo soul." },
+    { name: "Tifen", genre: "Pop Urbaine", image: "./artists/TIF.webp", description: "Une artiste pop urbaine poétique, portée par des textes puissants et une voix singulière." },
+    { name: "Tigre", genre: "Pop Electronique", image: "./artists/tigre.webp", description: "Une artiste pop électronique bullaire : intime, directe, habitée." },
+    { name: "Audrey", genre: "Pop Soul", image: "./artists/Audrey.webp", description: "Entre Beatles et Amy Winehouse, une pop soul organique aux couleurs rétro et psychadélique." },
+    { name: "Antoine Crop", genre: "Néo Classique", image: "./artists/antoine.webp", description: "Un univers néo-classique cinématographique, entre piano et cordes, influencé par Max Richter." },
+    { name: "Gerson", genre: "Pop/RnB", image: "./artists/Gerson.webp", description: "Un son qui fusionne l’énergie de la pop et la sensualité du RnB" },
   ];
 
   // État pour la pagination

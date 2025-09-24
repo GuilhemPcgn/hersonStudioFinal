@@ -1,6 +1,3 @@
-// Configuration Static Form
-// Remplacez cette clé API par votre vraie clé API obtenue sur https://staticforms.xyz
-
 export const STATIC_FORM_CONFIG = {
   // CLÉ API obtenue sur https://staticforms.xyz
   ACCESS_KEY: 'sf_4j85e9ahc445lhd08ngdbnmb',
@@ -20,10 +17,3 @@ export const STATIC_FORM_CONFIG = {
     ERROR: 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer.'
   }
 };
-
-// Instructions pour obtenir votre vraie clé API :
-// 1. Allez sur https://staticforms.xyz
-// 2. Créez un compte gratuit
-// 3. Générez une nouvelle clé API
-// 4. Remplacez FAKE_API_KEY_123456789 par votre vraie clé
-// 5. Testez le formulaire pour vérifier que tout fonctionne

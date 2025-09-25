@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import headerArtists from '@/assets/headerArtists.jpeg';
+import headerArtists from '@/assets/headerArtists.webp';
 
 const Artists = () => {
   const artists = [

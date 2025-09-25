@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import studioAbout from '@/assets/AboutSection.jpeg';
-import hersonBio from '@/assets/hersonbio.jpg';
+import studioAbout from '@/assets/AboutSection.webp';
+import hersonBio from '@/assets/hersonbio.webp';
 
 const AboutSection = () => {
   return (

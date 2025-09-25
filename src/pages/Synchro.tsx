@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import headerSynchro from '@/assets/headerSynchro.jpg';
+import headerSynchro from '@/assets/headerSynchro.webp';
 
 const Synchro = () => {
     // Séparation des données en deux catégories

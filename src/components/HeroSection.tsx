@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Play, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import studioHero from '@/assets/posterHero.png';
+import studioHero from '@/assets/posterHero.webp';
 import VideoHero from '@/assets/VideoHero.webm';
 
 

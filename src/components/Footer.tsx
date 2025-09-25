@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import SocialMedia from './SocialMedia';
-import LogoSimple from '@/assets/LogoSimple.png';
+import LogoSimple from '@/assets/LogoSimple.webp';
 
 const Footer = () => {
   const navigation = [

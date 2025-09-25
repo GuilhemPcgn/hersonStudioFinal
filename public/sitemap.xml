@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        xmlns:image="http://www.google.fr/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.fr/schemas/sitemap-video/1.1">
   
   <!-- Page d'accueil - Priorité maximale -->
   <url>
-    <loc>https://hersonstudio.com/</loc>
+    <loc>https://hersonstudio.fr/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/LogoSimple.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/LogoSimple.webp</image:loc>
       <image:title>Herson Studio - Logo</image:title>
       <image:caption>Studio de musique professionnel Herson</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/posterHero.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/posterHero.webp</image:loc>
       <image:title>Herson Studio - Hero Section</image:title>
       <image:caption>Studio de musique professionnel pour enregistrement, production, mixage et mastering</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/AboutSection.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/AboutSection.webp</image:loc>
       <image:title>Herson Studio - À propos</image:title>
       <image:caption>Découvrez notre équipe et notre approche musicale</image:caption>
     </image:image>
@@ -28,62 +28,62 @@
 
   <!-- Page Music/Artistes - Haute priorité -->
   <url>
-    <loc>https://hersonstudio.com/music</loc>
+    <loc>https://hersonstudio.fr/music</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/headerArtists.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/headerArtists.webp</image:loc>
       <image:title>Herson Studio - Artistes</image:title>
       <image:caption>Découvrez nos collaborations avec des artistes variés</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/austin..webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/austin..webp</image:loc>
       <image:title>Austin. - Rappeur</image:title>
       <image:caption>Un rappeur au croisement du rap et du rock</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/SevK.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/SevK.webp</image:loc>
       <image:title>SevK - Rappeur</image:title>
       <image:caption>Un rappeur authentique qui mêle textes bruts, sonorités hispaniques et une touche romantique</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/KIARA.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/KIARA.webp</image:loc>
       <image:title>Kiara - RnB/Soul</image:title>
       <image:caption>Une voix moderne inspirée par SZA, dans un univers RnB vibrant et intime</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/penelope.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/penelope.webp</image:loc>
       <image:title>Pénélope - Pop Electronique</image:title>
       <image:caption>Une artiste pop électronique immersive, teintée d'influences jeux vidéo</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/SOlen.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/SOlen.webp</image:loc>
       <image:title>Solen - Pop/Neo-Soul</image:title>
       <image:caption>Une artiste indie-pop urbaine aux allures mélodiques, inspirée par la néo soul</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/TIF.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/TIF.webp</image:loc>
       <image:title>Tifen - Pop Urbaine</image:title>
       <image:caption>Une artiste pop urbaine poétique, portée par des textes puissants et une voix singulière</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/tigre.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/tigre.webp</image:loc>
       <image:title>Tigre - Pop Electronique</image:title>
       <image:caption>Une artiste pop électronique bullaire : intime, directe, habitée</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/Audrey.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/Audrey.webp</image:loc>
       <image:title>Audrey - Pop Soul</image:title>
       <image:caption>Entre Beatles et Amy Winehouse, une pop soul organique aux couleurs rétro et psychadélique</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/antoine.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/antoine.webp</image:loc>
       <image:title>Antoine Crop - Néo Classique</image:title>
       <image:caption>Un univers néo-classique cinématographique, entre piano et cordes, influencé par Max Richter</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/artists/Gerson.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/artists/Gerson.webp</image:loc>
       <image:title>Gerson - Pop/RnB</image:title>
       <image:caption>Un son qui fusionne l'énergie de la pop et la sensualité du RnB</image:caption>
     </image:image>
@@ -91,72 +91,72 @@
 
   <!-- Page Synchro - Haute priorité -->
   <url>
-    <loc>https://hersonstudio.com/synchro</loc>
+    <loc>https://hersonstudio.fr/synchro</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/headerSynchro.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/headerSynchro.webp</image:loc>
       <image:title>Herson Studio - Synchro</image:title>
       <image:caption>Musique originale pour films, publicités et documentaires</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/jadore.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/jadore.webp</image:loc>
       <image:title>J'adore ce que vous faites - Film</image:title>
       <image:caption>Long-métrage avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/papisitter.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/papisitter.webp</image:loc>
       <image:title>Papi Sitter - Film</image:title>
       <image:caption>Long-métrage avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/honneur.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/honneur.webp</image:loc>
       <image:title>Pour l'honneur - Film</image:title>
       <image:caption>Long-métrage avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/toutcasser.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/toutcasser.webp</image:loc>
       <image:title>On voulait tout casser - Film</image:title>
       <image:caption>Long-métrage avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/filsajo.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/filsajo.webp</image:loc>
       <image:title>Fils à Jo - Film</image:title>
       <image:caption>Long-métrage avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/Moreeti.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/Moreeti.webp</image:loc>
       <image:title>Moreeti - Documentaire</image:title>
       <image:caption>Documentaire avec musique originale</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/francetv.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/francetv.webp</image:loc>
       <image:title>France TV - Publicité</image:title>
       <image:caption>Musique pour publicité France TV</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/canal+.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/canal+.webp</image:loc>
       <image:title>Canal+ - Publicité</image:title>
       <image:caption>Musique pour publicité Canal+</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/nato.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/nato.webp</image:loc>
       <image:title>OTAN/NATO - Publicité</image:title>
       <image:caption>Musique pour publicité OTAN/NATO</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/cdmrugby.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/cdmrugby.webp</image:loc>
       <image:title>Coupe du Monde de Rugby 2023 - Publicité</image:title>
       <image:caption>Musique pour publicité Coupe du Monde de Rugby</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/tourdefrance.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/tourdefrance.webp</image:loc>
       <image:title>Vélo Club Tour de France - Générique</image:title>
       <image:caption>Générique pour Vélo Club Tour de France</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://hersonstudio.com/synchro/tf1.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/synchro/tf1.webp</image:loc>
       <image:title>TF1 - Publicité</image:title>
       <image:caption>Musique pour publicité TF1</image:caption>
     </image:image>
@@ -164,12 +164,12 @@
 
   <!-- Page Contact - Haute priorité -->
   <url>
-    <loc>https://hersonstudio.com/contact</loc>
+    <loc>https://hersonstudio.fr/contact</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://hersonstudio.com/assets/LogoSimple.webp</image:loc>
+      <image:loc>https://hersonstudio.fr/assets/LogoSimple.webp</image:loc>
       <image:title>Herson Studio - Contact</image:title>
       <image:caption>Contactez-nous pour votre projet musical</image:caption>
     </image:image>
@@ -177,7 +177,7 @@
 
   <!-- Page Mentions légales - Priorité moyenne -->
   <url>
-    <loc>https://hersonstudio.com/mentions-legales</loc>
+    <loc>https://hersonstudio.fr/mentions-legales</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -185,7 +185,7 @@
 
   <!-- Page Politique de confidentialité - Priorité moyenne -->
   <url>
-    <loc>https://hersonstudio.com/politique-confidentialite</loc>
+    <loc>https://hersonstudio.fr/politique-confidentialite</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -193,7 +193,7 @@
 
   <!-- Pages d'erreur et non trouvées - Priorité faible -->
   <url>
-    <loc>https://hersonstudio.com/404</loc>
+    <loc>https://hersonstudio.fr/404</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
@@ -201,7 +201,7 @@
 
   <!-- Ressources statiques importantes -->
   <url>
-    <loc>https://hersonstudio.com/robots.txt</loc>
+    <loc>https://hersonstudio.fr/robots.txt</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>

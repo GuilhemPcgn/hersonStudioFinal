@@ -1,20 +1,50 @@
-import { useEffect, useRef } from 'react';
-import { Play, ArrowDown } from 'lucide-react';
+import { useEffect } from 'react';
+import { Play, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import studioHero from '@/assets/posterHero.webp';
-import VideoHero from '@/assets/VideoHero.webm';
+import { useLazyVideo } from '@/hooks/use-lazy-video';
 
 
 const HeroSection = () => {
+  const videoRef = useLazyVideo({
+    fallbackDelay: 300,
+    intersectionThreshold: 0.1
+  });
 
-const videoRef = useRef(null);
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+      
+      // Forcer le chargement et la lecture de la vidéo
+      const video = videoRef.current;
+      
+      const handleCanPlay = () => {
+        video.play().catch(console.error);
+      };
+      
+      const handleLoadedData = () => {
+        video.play().catch(console.error);
+      };
+      
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('loadeddata', handleLoadedData);
+      
+      // Charger la vidéo immédiatement
+      video.load();
+      
+      return () => {
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('loadeddata', handleLoadedData);
+      };
+    }
+  }, []);
 
-useEffect(() => {
-  if (videoRef.current) {
-    videoRef.current.playbackRate = 0.75;
-  }
-}, []);
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -22,14 +52,17 @@ useEffect(() => {
       <div className="absolute inset-0">
         <video 
           ref={videoRef}
-          autoPlay
+          playsInline
           muted
           loop
-          playsInline
-          poster={studioHero}
+          autoPlay
+          preload="auto"
+          poster="/assets/posterHero.webp"
+          data-lazy="true"
           className="w-full h-full object-cover"
         >
-          <source src={VideoHero} type="video/webm" />
+          <source src="/assets/VideoHero.webm" type="video/webm" />
+          <source src="/assets/VideoHero.mp4" type="video/mp4" />
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
         <div className="absolute inset-0 hero-overlay"></div>
@@ -37,7 +70,7 @@ useEffect(() => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        <div className="glass-card p-12 rounded-3xl">
+        <div className="glass-card card-container p-12 rounded-3xl">
           <h1 className="font-playfair text-5xl md:text-7xl font-bold gradient-text mb-6">
             Herson Studio
           </h1>
@@ -71,10 +104,22 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
-        <ArrowDown className="h-6 w-6" />
-      </div>
+      {/* Scroll Indicator - Enhanced */}
+      <button
+        onClick={scrollToContent}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-110"
+        aria-label="Défiler vers le contenu"
+      >
+        <span className="text-white/90 text-sm font-medium tracking-wider uppercase animate-pulse group-hover:text-white">
+          Découvrir
+        </span>
+        <div className="relative">
+          <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-full animate-ping opacity-75"></div>
+          <div className="relative bg-white/10 backdrop-blur-md border border-white/30 rounded-full p-3 group-hover:bg-white/20 transition-all duration-300">
+            <ChevronDown className="h-6 w-6 text-white animate-bounce" />
+          </div>
+        </div>
+      </button>
     </section>
   );
 };

@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <!-- Preconnect to Google Fonts for fallback -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload local fonts for performance -->
+    <link rel="preload" as="style" href="/fonts/site-fonts.css">
+    <link rel="stylesheet" href="/fonts/site-fonts.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/fonts/site-fonts.css"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="./faviconapple.png" />

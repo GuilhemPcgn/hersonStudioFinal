@@ -1,10 +1,13 @@
 import { Button } from '@/components/ui/button';
-import studioAbout from '@/assets/AboutSection.webp';
-import hersonBio from '@/assets/hersonbio.webp';
+import OptimizedImage from '@/components/OptimizedImage';
+
+// Images depuis le dossier public
+const studioAbout = '/assets/AboutSection.webp';
+const hersonBio = '/assets/hersonbio.webp';
 
 const AboutSection = () => {
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative section-container">
       <div className="container mx-auto px-6">
         {/* Section Studio */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
@@ -34,11 +37,15 @@ const AboutSection = () => {
 
           {/* Image */}
           <div className="relative">
-            <div className="glass-card p-2 rounded-3xl overflow-hidden">
-              <img
+            <div className="glass-card card-container p-2 rounded-3xl overflow-hidden">
+              <OptimizedImage
                 src={studioAbout}
                 alt="Studio d'enregistrement Herson avec équipement professionnel"
+                width={800}
+                height={800}
                 className="w-full aspect-square object-cover rounded-2xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={true}
               />
             </div>
           </div>
@@ -48,11 +55,15 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image à gauche */}
           <div className="relative order-2 lg:order-1">
-            <div className="glass-card p-2 rounded-3xl overflow-hidden">
-              <img
+            <div className="glass-card card-container p-2 rounded-3xl overflow-hidden">
+              <OptimizedImage
                 src={hersonBio}
                 alt="Herson - Musicien compositeur et producteur"
+                width={800}
+                height={800}
                 className="w-full aspect-square object-cover object-left rounded-2xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={true}
               />
             </div>
           </div>

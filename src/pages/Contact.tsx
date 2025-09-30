@@ -232,39 +232,15 @@ const Contact = () => {
 
           {/* Bandeau défilant sous les cartes de tarifs */}
           <div className="mt-12 overflow-hidden bg-white/40 backdrop-blur border-y border-studio-blue/20 py-3">
-            <div className="whitespace-nowrap flex animate-scroll">
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-              <span className="mx-6 text-studio-blue font-medium">
-                Envoie tes pistes, on s’occupe du reste. • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d’avancement
-              </span>
-            </div>
-          </div>
+  <div className="scrolling-text">
+    <div className="scrolling-content">
+      <span className="item">Envoie tes pistes, on s'occupe du reste • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d'avancement • Envoie tes pistes, on s'occupe du reste • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d'avancement • Envoie tes pistes, on s'occupe du reste • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d'avancement </span>
+      {/* clone pour la boucle */}
+      <span className="item" aria-hidden="true">Envoie tes pistes, on s'occupe du reste • Devis clair en 24–48 h • Paiement échelonné possible • Sessions en studio ou à distance • Des formules simples, adaptées à ton niveau d'avancement</span>
+    </div>
+  </div>
+</div>
+
         </div>
       </section>
 
@@ -274,10 +250,10 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-playfair text-4xl md:text-5xl font-bold text-studio-blue mb-4">
-                Parlons de votre projet
+                Parlons de ton projet
               </h2>
               <p className="text-xl text-gray-700/70">
-                Remplissez le formulaire ci-dessous et nous vous recontacterons dans les 24h
+                Remplis le formulaire ci-dessous et on te recontacte dans les 24h
               </p>
             </div>
 
@@ -415,18 +391,18 @@ const Contact = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-studio-blue mb-6 text-center">FAQ</h3>
-            <div className="glass-card rounded-2xl p-4 md:p-6">
+            <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg shadow-gray-200/50 border border-gray-100">
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-left">Je pars de zéro, c’est ok ?</AccordionTrigger>
+                  <AccordionTrigger className="text-left">Je pars de zéro, c'est ok ?</AccordionTrigger>
                   <AccordionContent>Oui. On démarre par un brief et une première maquette rapide.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger className="text-left">Et si j’ai déjà une instru ?</AccordionTrigger>
-                  <AccordionContent>On peut l’améliorer, réarranger ou repartir d’elle</AccordionContent>
+                  <AccordionTrigger className="text-left">Et si j'ai déjà une instru ?</AccordionTrigger>
+                  <AccordionContent>On peut l'améliorer, réarranger ou repartir d'elle</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
-                  <AccordionTrigger className="text-left">Je veux des musiciens réels ?</AccordionTrigger>
+                  <AccordionTrigger className="text-left">Et si je veux de vrais musiciens ?</AccordionTrigger>
                   <AccordionContent>Possible. On te propose des options selon le budget.</AccordionContent>
                 </AccordionItem>
               </Accordion>

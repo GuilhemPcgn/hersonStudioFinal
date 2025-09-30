@@ -1,24 +1,27 @@
 import { useState } from 'react';
-import headerSynchro from '@/assets/headerSynchro.webp';
+import OptimizedImage from '@/components/OptimizedImage';
+
+// Image header depuis le dossier public
+const headerSynchro = '/assets/headerSynchro.webp';
 
 const Synchro = () => {
     // Séparation des données en deux catégories
     const longsMetrages = [
-      { name: "J'adore ce que vous faites", genre: "Film", image: "./synchro/jadore.webp" },
-      { name: "Papi Sitter", genre: "Film", image: "./synchro/papisitter.webp" },
-      { name: "Pour l'honneur", genre: "Film", image: "./synchro/honneur.webp" },
-      { name: "On voulait tout casser", genre: "Film", image: "./synchro/toutcasser.webp" },
-      { name: "Fils à Jo", genre: "Film", image: "./synchro/filsajo.webp" },
-      { name: "Moreeti", genre: "Documentaire", image: "./synchro/Moreeti.webp" },
+      { name: "J'adore ce que vous faites", genre: "Film", image: "/synchro/jadore.webp" },
+      { name: "Papi Sitter", genre: "Film", image: "/synchro/papisitter.webp" },
+      { name: "Pour l'honneur", genre: "Film", image: "/synchro/honneur.webp" },
+      { name: "On voulait tout casser", genre: "Film", image: "/synchro/toutcasser.webp" },
+      { name: "Fils à Jo", genre: "Film", image: "/synchro/filsajo.webp" },
+      { name: "Moreeti", genre: "Documentaire", image: "/synchro/Moreeti.webp" },
     ];
 
     const chainesTvPublicites = [
-      { name: "France TV", genre: "Publicité", image: "./synchro/francetv.webp" },
-      { name: "Canal+", genre: "Publicité", image: "./synchro/canal+.webp" },
-      { name: "OTAN/NATO", genre: "Publicité", image: "./synchro/nato.webp" },
-      { name: "Coupe du Monde de Rugby 2023", genre: "Publicité", image: "./synchro/cdmrugby.webp" },
-      { name: "Vélo Club Tour de France", genre: "Générique", image: "./synchro/tourdefrance.webp" },
-      { name: "TF1", genre: "Publicité", image: "./synchro/tf1.webp" },
+      { name: "France TV", genre: "Publicité", image: "/synchro/francetv.webp" },
+      { name: "Canal+", genre: "Publicité", image: "/synchro/canal+.webp" },
+      { name: "OTAN/NATO", genre: "Publicité", image: "/synchro/nato.webp" },
+      { name: "Coupe du Monde de Rugby 2023", genre: "Publicité", image: "/synchro/cdmrugby.webp" },
+      { name: "Vélo Club Tour de France", genre: "Générique", image: "/synchro/tourdefrance.webp" },
+      { name: "TF1", genre: "Publicité", image: "/synchro/tf1.webp" },
     ];
 
     // État pour la catégorie actuelle (0 = Longs métrages, 1 = Chaînes TV & Publicités)
@@ -94,14 +97,18 @@ const Synchro = () => {
     };
   
     return (
-      <main className="pt-24">
+      <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 relative overflow-hidden">
           {/* Background Image */}
-          <img 
-            src={headerSynchro} 
-            alt="Background Synchro" 
+          <OptimizedImage
+            src={headerSynchro}
+            alt="Background Synchro"
+            width={1600}
+            height={900}
             className="absolute inset-0 w-full h-full object-cover object-bottom opacity-20"
+            sizes="100vw"
+            priority={true}
           />
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
@@ -127,6 +134,66 @@ const Synchro = () => {
             <h2 className="text-center font-playfair text-3xl md:text-4xl font-bold text-studio-blue mb-12">
               {currentTitle}
             </h2>
+            
+            {/* Slider de navigation entre catégories */}
+            <div className="flex justify-center items-center mb-12">
+              <div className="relative">
+                {/* Slider background */}
+                <div className="w-80 h-12 bg-white/30 rounded-full p-1 relative">
+                  {/* Slider thumb */}
+                  <div 
+                    className={`absolute top-1 w-1/2 h-10 bg-white rounded-full shadow-lg transition-transform duration-300 ease-out ${
+                      currentCategory === 0 ? 'translate-x-0' : 'translate-x-full'
+                    }`}
+                  />
+                  
+                  {/* Labels */}
+                  <div className="relative z-10 flex h-full">
+                    <button
+                      onClick={() => {
+                        if (currentCategory !== 0 && !isTransitioning) {
+                          setIsTransitioning(true);
+                          setTimeout(() => {
+                            setCurrentCategory(0);
+                            setCurrentPage(1);
+                            setIsTransitioning(false);
+                          }, 150);
+                        }
+                      }}
+                      disabled={isTransitioning}
+                      className={`flex-1 flex items-center justify-center text-sm font-medium transition-colors duration-300 ${
+                        currentCategory === 0
+                          ? 'text-studio-blue'
+                          : 'text-studio-blue/70 hover:text-studio-blue'
+                      }`}
+                    >
+                      Longs métrages
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (currentCategory !== 1 && !isTransitioning) {
+                          setIsTransitioning(true);
+                          setTimeout(() => {
+                            setCurrentCategory(1);
+                            setCurrentPage(1);
+                            setIsTransitioning(false);
+                          }, 150);
+                        }
+                      }}
+                      disabled={isTransitioning}
+                      className={`flex-1 flex items-center justify-center text-sm font-medium transition-colors duration-300 ${
+                        currentCategory === 1
+                          ? 'text-studio-blue'
+                          : 'text-studio-blue/70 hover:text-studio-blue'
+                      }`}
+                    >
+                      TV & Publicités
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
             
             {/* Navigation et grille */}
             <div className="relative">
@@ -194,109 +261,46 @@ const Synchro = () => {
               </div>
             </div>
 
-            {/* Ligne de séparation */}
-            <div className="flex justify-center items-center mt-12">
-              <div className="w-24 h-px bg-studio-blue/20"></div>
+            {/* Points indicateurs */}
+            <div className="flex justify-center space-x-2 mt-12">
+              <button
+                onClick={() => {
+                  if (currentCategory !== 0 && !isTransitioning) {
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                      setCurrentCategory(0);
+                      setCurrentPage(1);
+                      setIsTransitioning(false);
+                    }, 150);
+                  }
+                }}
+                disabled={isTransitioning}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentCategory === 0
+                    ? 'bg-studio-blue scale-125 shadow-lg shadow-studio-blue/50'
+                    : 'bg-studio-blue/30 hover:bg-studio-blue/60 hover:scale-110'
+                }`}
+              />
+              <button
+                onClick={() => {
+                  if (currentCategory !== 1 && !isTransitioning) {
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                      setCurrentCategory(1);
+                      setCurrentPage(1);
+                      setIsTransitioning(false);
+                    }, 150);
+                  }
+                }}
+                disabled={isTransitioning}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentCategory === 1
+                    ? 'bg-studio-blue scale-125 shadow-lg shadow-studio-blue/50'
+                    : 'bg-studio-blue/30 hover:bg-studio-blue/60 hover:scale-110'
+                }`}
+              />
             </div>
 
-            {/* Slider de navigation entre catégories */}
-            <div className="flex justify-center items-center mt-8">
-              <div className="relative">
-                {/* Slider background */}
-                <div className="w-80 h-12 bg-white/30 rounded-full p-1 relative">
-                  {/* Slider thumb */}
-                  <div 
-                    className={`absolute top-1 w-1/2 h-10 bg-white rounded-full shadow-lg transition-transform duration-300 ease-out ${
-                      currentCategory === 0 ? 'translate-x-0' : 'translate-x-full'
-                    }`}
-                  />
-                  
-                  {/* Labels */}
-                  <div className="relative z-10 flex h-full">
-                    <button
-                      onClick={() => {
-                        if (currentCategory !== 0 && !isTransitioning) {
-                          setIsTransitioning(true);
-                          setTimeout(() => {
-                            setCurrentCategory(0);
-                            setCurrentPage(1);
-                            setIsTransitioning(false);
-                          }, 150);
-                        }
-                      }}
-                      disabled={isTransitioning}
-                      className={`flex-1 flex items-center justify-center text-sm font-medium transition-colors duration-300 ${
-                        currentCategory === 0
-                          ? 'text-studio-blue'
-                          : 'text-studio-blue/70 hover:text-studio-blue'
-                      }`}
-                    >
-                      Longs métrages
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (currentCategory !== 1 && !isTransitioning) {
-                          setIsTransitioning(true);
-                          setTimeout(() => {
-                            setCurrentCategory(1);
-                            setCurrentPage(1);
-                            setIsTransitioning(false);
-                          }, 150);
-                        }
-                      }}
-                      disabled={isTransitioning}
-                      className={`flex-1 flex items-center justify-center text-sm font-medium transition-colors duration-300 ${
-                        currentCategory === 1
-                          ? 'text-studio-blue'
-                          : 'text-studio-blue/70 hover:text-studio-blue'
-                      }`}
-                    >
-                      TV & Publicités
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Points indicateurs */}
-                <div className="flex justify-center space-x-2 mt-4">
-                  <button
-                    onClick={() => {
-                      if (currentCategory !== 0 && !isTransitioning) {
-                        setIsTransitioning(true);
-                        setTimeout(() => {
-                          setCurrentCategory(0);
-                          setCurrentPage(1);
-                          setIsTransitioning(false);
-                        }, 150);
-                      }
-                    }}
-                    disabled={isTransitioning}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      currentCategory === 0
-                        ? 'bg-studio-blue scale-125 shadow-lg shadow-studio-blue/50'
-                        : 'bg-studio-blue/30 hover:bg-studio-blue/60 hover:scale-110'
-                    }`}
-                  />
-                  <button
-                    onClick={() => {
-                      if (currentCategory !== 1 && !isTransitioning) {
-                        setIsTransitioning(true);
-                        setTimeout(() => {
-                          setCurrentCategory(1);
-                          setCurrentPage(1);
-                          setIsTransitioning(false);
-                        }, 150);
-                      }
-                    }}
-                    disabled={isTransitioning}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      currentCategory === 1
-                        ? 'bg-studio-blue scale-125 shadow-lg shadow-studio-blue/50'
-                        : 'bg-studio-blue/30 hover:bg-studio-blue/60 hover:scale-110'
-                    }`}
-                  />
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </main>

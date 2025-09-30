@@ -1,0 +1,7 @@
+[
+  {
+    "name": "initial JS",
+    "path": "dist/assets/*.js",
+    "limit": "300 kB"
+  }
+]

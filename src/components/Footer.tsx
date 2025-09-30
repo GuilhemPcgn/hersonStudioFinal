@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import SocialMedia from './SocialMedia';
-import LogoSimple from '@/assets/LogoSimple.webp';
+
+// Logo depuis le dossier public
+const LogoSimple = '/assets/LogoSimple.webp';
 
 const Footer = () => {
   const navigation = [
@@ -58,7 +60,7 @@ const Footer = () => {
               Suivez-nous
             </h3>
             <p className="text-gray-300 text-sm text-center md:text-left max-w-xs">
-              Restez connecté avec Herson Studio et découvrez nos dernières créations musicales
+              Reste connecté avec Herson Studio et découvre nos dernières créations musicales
             </p>
             <div className="flex justify-center md:justify-start">
               <SocialMedia />

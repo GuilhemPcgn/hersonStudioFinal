@@ -2,7 +2,33 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Music, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/LogoSimple.webp';
+const logo = '/assets/LogoSimple.webp';
+
+// Fonction de prefetch pour les pages
+const prefetchPage = (path: string) => {
+  switch (path) {
+    case '/':
+      import('../pages/Home');
+      break;
+    case '/music':
+      import('../pages/Artists');
+      break;
+    case '/synchro':
+      import('../pages/Synchro');
+      break;
+    case '/contact':
+      import('../pages/Contact');
+      break;
+    case '/mentions-legales':
+      import('../pages/LegalMentions');
+      break;
+    case '/politique-confidentialite':
+      import('../pages/PrivacyPolicy');
+      break;
+    default:
+      break;
+  }
+};
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,11 +38,16 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      const threshold = 50;
+      setIsScrolled(scrollY > threshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const navigation = [
@@ -28,8 +59,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-nav shadow-lg' : 'bg-transparent'
+      className={`header-fixed ${
+        isHomePage 
+          ? (isScrolled ? 'header-scrolled' : 'header-transparent')
+          : 'header-solid'
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
@@ -52,6 +85,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
+                onMouseEnter={() => prefetchPage(item.href)}
                 className={`${
                   isScrolled || !isHomePage ? 'text-studio-blue' : 'text-white'
                 } hover:text-studio-blue transition-colors relative group`}
@@ -86,6 +120,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
+                  onMouseEnter={() => prefetchPage(item.href)}
                   className="text-foreground hover:text-studio-blue transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

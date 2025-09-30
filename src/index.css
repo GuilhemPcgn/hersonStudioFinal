@@ -68,33 +68,103 @@
 }
 
 @layer components {
-  /* Glassmorphism Components */
+  /* Glassmorphism Components - Optimisés pour les performances */
   .glass-card {
-    @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    @apply backdrop-blur-xl bg-white/10 border border-white/20;
+    contain: paint;
+    position: relative;
+  }
+  
+  /* Pseudo-élément pour l'ombre - plus performant */
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(31, 38, 135, 0.37), rgba(31, 38, 135, 0.2));
+    filter: blur(16px);
+    z-index: -1;
+    opacity: 0.8;
   }
   
   .glass-nav {
     @apply backdrop-blur-md bg-white/80 border-b border-white/20;
   }
   
+  /* Header fixe optimisé pour les performances */
+  .header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    contain: layout style paint;
+    will-change: transform, opacity;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Header transparent sur la page d'accueil */
+  .header-transparent {
+    background-color: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
+  
+  /* Header avec fond sur les autres pages */
+  .header-solid {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.1);
+  }
+  
+  /* Header au scroll - effet de transition */
+  .header-scrolled {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.2);
+  }
+  
   .glass-button {
     @apply backdrop-blur-md bg-white/15 hover:bg-white/25 border border-white/25 transition-all duration-300;
-    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+    contain: paint;
+    position: relative;
+    will-change: transform;
+  }
+  
+  /* Pseudo-élément pour l'ombre du bouton */
+  .glass-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(31, 38, 135, 0.2), rgba(31, 38, 135, 0.1));
+    filter: blur(8px);
+    z-index: -1;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
   }
   
   .glass-button:hover {
-    box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.3);
     transform: translateY(-1px);
   }
   
-  /* Studio Specific Styles */
+  .glass-button:hover::before {
+    opacity: 0.8;
+  }
+  
+  /* Studio Specific Styles - Optimisés pour les performances */
   .hero-overlay {
     background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+    contain: paint;
   }
   
   .artist-overlay {
     @apply absolute inset-0 bg-white/70 transition-opacity duration-300 hover:opacity-0;
+    contain: paint;
+    will-change: opacity;
   }
   
   .gradient-text {
@@ -104,36 +174,48 @@
     background-clip: text;
   }
 
-  /* Scrolling Animation */
-  .animate-scroll {
-    animation: scroll 248s linear infinite;
+  /* Infinite Marquee - Optimisé pour les performances */
+  .marquee {
+    overflow: hidden;
   }
 
-  .animate-scroll-reverse {
-    animation: scroll-reverse 248s linear infinite;
+  .marquee__track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 60s) linear infinite;
+    will-change: transform;
+    contain: paint;
   }
 
-  @keyframes scroll {
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
     0% {
       transform: translateX(0);
     }
-    100% {
-      transform: translateX(-500%);
-    }
-  }
-
-  @keyframes scroll-reverse {
-    0% {
-      transform: translateX(-500%);
+    99.9% {
+      transform: translateX(-66.66%);
     }
     100% {
       transform: translateX(0);
     }
   }
 
-  /* Footer Animations */
+  /* Respect des préférences de mouvement réduit */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+  }
+
+  /* Footer Animations - Optimisées pour les performances */
   .social-icon-bounce {
     animation: socialBounce 0.6s ease-in-out;
+    will-change: transform;
+    contain: paint;
   }
 
   @keyframes socialBounce {
@@ -153,6 +235,8 @@
 
   .particle-float {
     animation: particleFloat 2s ease-in-out infinite;
+    will-change: transform;
+    contain: paint;
   }
 
   @keyframes particleFloat {
@@ -166,14 +250,30 @@
 
   .glow-effect {
     animation: glowPulse 2s ease-in-out infinite alternate;
+    will-change: opacity;
+    contain: paint;
+    position: relative;
+  }
+  
+  /* Pseudo-élément pour l'effet de glow - plus performant */
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(214, 38% 36%, 0.3), rgba(28, 89% 58%, 0.2));
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: glowPulseOpacity 2s ease-in-out infinite alternate;
   }
 
-  @keyframes glowPulse {
+  @keyframes glowPulseOpacity {
     from {
-      box-shadow: 0 0 20px rgba(214, 38% 36%, 0.3);
+      opacity: 0.6;
     }
     to {
-      box-shadow: 0 0 30px rgba(214, 38% 36%, 0.6), 0 0 40px rgba(28, 89% 58%, 0.4);
+      opacity: 1;
     }
   }
 
@@ -190,6 +290,8 @@
   /* Gradient animation for text */
   .animate-gradient-x {
     animation: gradient-x 3s linear infinite;
+    will-change: background-position;
+    contain: paint;
   }
 
   @keyframes gradient-x {
@@ -200,4 +302,78 @@
       background-position: 0% 50%;
     }
   }
+  
+  /* Animation de défilement pour le bandeau */
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+    contain: paint;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Pause l'animation au survol */
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Respect des préférences de mouvement réduit */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-scroll {
+      animation: none;
+    }
+  }
+
+  /* Classes utilitaires pour les performances */
+  .section-container {
+    contain: paint;
+  }
+  
+  .card-container {
+    contain: paint;
+    position: relative;
+  }
+  
+  .animation-container {
+    contain: paint;
+    will-change: transform;
+  }
+  
+  .opacity-animation {
+    will-change: opacity;
+    contain: paint;
+  }
+}
+
+/* le viewport */
+.scrolling-text{
+  overflow: hidden;
+}
+
+/* la piste */
+.scrolling-content{
+  display: inline-flex;          /* largeur = somme des enfants */
+  width: max-content;            /* pas la largeur du parent */
+  white-space: nowrap;           /* jamais de retour à la ligne */
+  gap: 3rem;                     /* espace entre les 2 copies */
+  animation: marquee 58s linear infinite;
+  will-change: transform;
+}
+
+/* chaque copie ne doit pas rétrécir */
+.scrolling-content .item{
+  flex: none;                    /* équiv. Tailwind shrink-0 */
+}
+
+/* décaler exactement d'une demi-piste */
+@keyframes marquee{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

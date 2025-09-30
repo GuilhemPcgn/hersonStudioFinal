@@ -227,6 +227,107 @@ Si le lag persiste sur des machines très faibles:
 
 ---
 
+## ⚡ MISE À JOUR : Optimisation du Lag au Premier Chargement
+
+### Problème Identifié
+Lag persistant **au premier scroll uniquement**, causé par :
+- La vidéo qui se charge et se décode pendant que l'utilisateur scroll
+- Le décodage vidéo qui consomme CPU/GPU en compétition avec le scroll
+- La lecture qui démarre immédiatement dès que `canplay` est déclenché
+
+### Solution Appliquée : Différer la Vidéo jusqu'à la Fin du Premier Scroll
+
+#### 1. **Détection Intelligente du Scroll** (`HeroSection.tsx`)
+```tsx
+// Détecter le premier scroll et attendre que l'utilisateur arrête
+const handleScroll = () => {
+  if (!userHasScrolled) {
+    setUserHasScrolled(true);
+  }
+  
+  // Throttle avec RAF
+  if (rafId !== null) return;
+  
+  rafId = requestAnimationFrame(() => {
+    // Clear le timeout précédent
+    if (scrollTimeoutRef.current !== null) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // Attendre 500ms après que l'utilisateur arrête de scroller
+    scrollTimeoutRef.current = window.setTimeout(() => {
+      setCanStartVideo(true);
+    }, 500);
+    
+    rafId = null;
+  });
+};
+```
+
+**Stratégie:**
+- ✅ Si l'utilisateur scroll **immédiatement**, la vidéo attend qu'il s'arrête + 500ms
+- ✅ Si l'utilisateur **ne scroll pas** dans les 2 premières secondes, la vidéo démarre automatiquement
+- ✅ Le scroll reste **parfaitement fluide** car aucun décodage vidéo n'est en cours
+
+#### 2. **Preload Optimisé** (`use-lazy-video.tsx`)
+```tsx
+// Avant:
+video.preload = 'metadata';  // Charge immédiatement
+video.load();
+video.preload = 'auto';      // Charge tout
+video.load();
+
+// Après:
+video.preload = 'none';      // Ne charge rien jusqu'au play()
+video.load();
+```
+
+**Gain:**
+- ❌ Avant : ~3-5 Mo téléchargés immédiatement
+- ✅ Après : 0 octet jusqu'à ce que l'utilisateur arrête de scroller
+
+### Résultats Attendus
+
+| Scénario | Avant | Après |
+|----------|-------|-------|
+| **Premier scroll immédiat** | Lag visible, saccades | Fluide à 60 FPS ✨ |
+| **Attente 2s sans scroll** | Vidéo démarre, pas de lag | Vidéo démarre, pas de lag ✨ |
+| **Scroll pendant le chargement** | Lag important | Aucun chargement, pas de lag ✨ |
+
+### Bonus : Économie de Bande Passante
+- La vidéo ne se charge **que si nécessaire**
+- Si l'utilisateur quitte la page avant 2s → 0 octet téléchargé
+- Si l'utilisateur scroll immédiatement → chargement différé intelligemment
+
+---
+
+## 📹 Optimisation Supplémentaire : Taille de la Vidéo
+
+### Pour réduire encore plus la taille du fichier (optionnel):
+
+```bash
+# Vérifier la taille actuelle
+ls -lh public/assets/VideoHero.webm
+
+# Si > 5 Mo, compresser avec FFmpeg:
+ffmpeg -i public/assets/VideoHero.webm \
+  -c:v libvpx-vp9 \
+  -b:v 1M \
+  -crf 30 \
+  -speed 1 \
+  -an \
+  public/assets/VideoHero-optimized.webm
+```
+
+**Cibles recommandées:**
+- **Résolution:** 1920x1080 max (Full HD)
+- **Bitrate:** 1-2 Mbps
+- **CRF:** 28-32 (plus élevé = plus petit fichier)
+- **Taille finale:** 2-4 Mo pour 17 secondes
+
+---
+
 *Document créé le 30 septembre 2025*
 *Optimisations validées sans erreur de lint*
+*Mise à jour : Optimisation vidéo au premier chargement - 30 sept. 2025*
 

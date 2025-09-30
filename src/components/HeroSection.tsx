@@ -8,27 +8,74 @@ import { useLazyVideo } from '@/hooks/use-lazy-video';
 const HeroSection = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [userHasScrolled, setUserHasScrolled] = useState(false);
+  const [canStartVideo, setCanStartVideo] = useState(false);
+  const scrollTimeoutRef = useRef<number | null>(null);
+  
   const videoRef = useLazyVideo({
     fallbackDelay: 1000,
     intersectionThreshold: 0.1
   });
 
+  // Détecter le premier scroll et attendre que l'utilisateur arrête de scroller
+  useEffect(() => {
+    let rafId: number | null = null;
+    
+    const handleScroll = () => {
+      if (!userHasScrolled) {
+        setUserHasScrolled(true);
+      }
+      
+      // Throttle avec RAF
+      if (rafId !== null) return;
+      
+      rafId = requestAnimationFrame(() => {
+        // Clear le timeout précédent
+        if (scrollTimeoutRef.current !== null) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        // Attendre 500ms après que l'utilisateur arrête de scroller
+        scrollTimeoutRef.current = window.setTimeout(() => {
+          setCanStartVideo(true);
+        }, 500);
+        
+        rafId = null;
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Si l'utilisateur ne scroll pas dans les 2 premières secondes, démarrer la vidéo
+    const initialTimeout = setTimeout(() => {
+      if (!userHasScrolled) {
+        setCanStartVideo(true);
+      }
+    }, 1500);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(initialTimeout);
+      if (scrollTimeoutRef.current !== null) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
+  }, [userHasScrolled]);
+
+  // Gérer le chargement et la lecture de la vidéo
   useEffect(() => {
     if (videoRef.current) {
       const video = videoRef.current;
       video.playbackRate = 0.75;
       
-      // Gérer le chargement de la vidéo en arrière-plan
       const handleCanPlay = () => {
         setVideoLoaded(true);
-        // Jouer la vidéo une fois qu'elle est prête
-        video.play().then(() => {
-          setVideoPlaying(true);
-        }).catch(console.error);
       };
       
       const handleLoadStart = () => {
-        // La vidéo commence à se charger
         console.log('Début du chargement de la vidéo');
       };
       
@@ -41,6 +88,20 @@ const HeroSection = () => {
       };
     }
   }, []);
+
+  // Démarrer la lecture quand autorisé
+  useEffect(() => {
+    if (videoRef.current && canStartVideo && !videoPlaying) {
+      const video = videoRef.current;
+      
+      // Avec preload="none", play() déclenche le chargement
+      video.play().then(() => {
+        setVideoPlaying(true);
+      }).catch((error) => {
+        console.error('Erreur lors de la lecture de la vidéo:', error);
+      });
+    }
+  }, [canStartVideo, videoPlaying]);
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -58,7 +119,7 @@ const HeroSection = () => {
           playsInline
           muted
           loop
-          preload="metadata"
+          preload="none"
           poster="/assets/posterHero.webp"
           data-lazy="true"
           className={`hero-video w-full h-full object-cover transition-opacity duration-1000 ${
@@ -75,14 +136,15 @@ const HeroSection = () => {
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
         
-        {/* Poster de fallback pour les navigateurs qui ne supportent pas le poster */}
-        {!videoLoaded && (
+        {/* Poster de fallback affiché tant que la vidéo n'est pas en lecture */}
+        {!videoPlaying && (
           <div 
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full transition-opacity duration-1000"
             style={{
               backgroundImage: 'url(/assets/posterHero.webp)',
               backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              opacity: videoPlaying ? 0 : 1
             }}
           />
         )}

@@ -13,22 +13,16 @@ export const useLazyVideo = (options: UseLazyVideoOptions = {}) => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Fonction pour charger la vidéo en arrière-plan
+    // Fonction pour charger la vidéo en arrière-plan (optimisé pour éviter le lag au scroll)
     const loadVideo = () => {
       if (video.dataset.lazy === 'true') {
-        // Charger seulement les métadonnées d'abord, puis la vidéo complète
-        video.preload = 'metadata';
-        video.load();
-        
-        // Une fois les métadonnées chargées, charger la vidéo complète
-        const handleLoadedMetadata = () => {
-          video.preload = 'auto';
-          video.load();
-          video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        };
-        
-        video.addEventListener('loadedmetadata', handleLoadedMetadata);
+        // Utiliser preload="none" pour éviter de charger la vidéo immédiatement
+        // Elle ne se chargera que quand play() sera appelé
+        video.preload = 'none';
         video.dataset.lazy = 'false';
+        
+        // Charger seulement les métadonnées pour avoir les dimensions
+        video.load();
       }
     };
 

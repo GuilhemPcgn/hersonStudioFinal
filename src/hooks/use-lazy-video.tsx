@@ -7,16 +7,27 @@ interface UseLazyVideoOptions {
 
 export const useLazyVideo = (options: UseLazyVideoOptions = {}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { fallbackDelay = 300, intersectionThreshold = 0.1 } = options;
+  const { fallbackDelay = 1000, intersectionThreshold = 0.1 } = options;
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Fonction pour charger la vidéo
+    // Fonction pour charger la vidéo en arrière-plan
     const loadVideo = () => {
       if (video.dataset.lazy === 'true') {
+        // Charger seulement les métadonnées d'abord, puis la vidéo complète
+        video.preload = 'metadata';
         video.load();
+        
+        // Une fois les métadonnées chargées, charger la vidéo complète
+        const handleLoadedMetadata = () => {
+          video.preload = 'auto';
+          video.load();
+          video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        };
+        
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
         video.dataset.lazy = 'false';
       }
     };

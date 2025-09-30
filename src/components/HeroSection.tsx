@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Play, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -6,35 +6,38 @@ import { useLazyVideo } from '@/hooks/use-lazy-video';
 
 
 const HeroSection = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
   const videoRef = useLazyVideo({
-    fallbackDelay: 300,
+    fallbackDelay: 1000,
     intersectionThreshold: 0.1
   });
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.75;
-      
-      // Forcer le chargement et la lecture de la vidéo
       const video = videoRef.current;
+      video.playbackRate = 0.75;
       
+      // Gérer le chargement de la vidéo en arrière-plan
       const handleCanPlay = () => {
-        video.play().catch(console.error);
+        setVideoLoaded(true);
+        // Jouer la vidéo une fois qu'elle est prête
+        video.play().then(() => {
+          setVideoPlaying(true);
+        }).catch(console.error);
       };
       
-      const handleLoadedData = () => {
-        video.play().catch(console.error);
+      const handleLoadStart = () => {
+        // La vidéo commence à se charger
+        console.log('Début du chargement de la vidéo');
       };
       
       video.addEventListener('canplay', handleCanPlay);
-      video.addEventListener('loadeddata', handleLoadedData);
-      
-      // Charger la vidéo immédiatement
-      video.load();
+      video.addEventListener('loadstart', handleLoadStart);
       
       return () => {
         video.removeEventListener('canplay', handleCanPlay);
-        video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('loadstart', handleLoadStart);
       };
     }
   }, []);
@@ -55,16 +58,35 @@ const HeroSection = () => {
           playsInline
           muted
           loop
-          autoPlay
-          preload="auto"
+          preload="metadata"
           poster="/assets/posterHero.webp"
           data-lazy="true"
-          className="w-full h-full object-cover"
+          className={`hero-video w-full h-full object-cover transition-opacity duration-1000 ${
+            videoPlaying ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            // Le poster sera affiché par défaut, la vidéo apparaîtra en fondu
+            backgroundImage: 'url(/assets/posterHero.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
         >
           <source src="/assets/VideoHero.webm" type="video/webm" />
-          <source src="/assets/VideoHero.mp4" type="video/mp4" />
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
+        
+        {/* Poster de fallback pour les navigateurs qui ne supportent pas le poster */}
+        {!videoLoaded && (
+          <div 
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              backgroundImage: 'url(/assets/posterHero.webp)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
+        )}
+        
         <div className="absolute inset-0 hero-overlay"></div>
       </div>
 

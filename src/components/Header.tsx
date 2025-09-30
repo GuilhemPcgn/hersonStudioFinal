@@ -37,16 +37,37 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
+    let rafId: number | null = null;
+    let lastScrollY = 0;
+    
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const threshold = 50;
-      setIsScrolled(scrollY > threshold);
+      // Throttle avec requestAnimationFrame
+      if (rafId !== null) return;
+      
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const threshold = 50;
+        
+        // Évite les updates inutiles si on reste dans le même état
+        const shouldBeScrolled = scrollY > threshold;
+        const wasScrolled = lastScrollY > threshold;
+        
+        if (shouldBeScrolled !== wasScrolled) {
+          setIsScrolled(shouldBeScrolled);
+        }
+        
+        lastScrollY = scrollY;
+        rafId = null;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
     };
   }, []);
 

@@ -82,7 +82,7 @@ const ArtistGallery = () => {
         {/* CTA Section */}
         <div className="mt-16 flex justify-center">
           <Link 
-            to="/artists"
+            to="/music"
             className="group relative inline-flex items-center gap-4 px-10 py-6 bg-white border-2 border-studio-blue text-studio-blue font-bold text-lg rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
           >
             {/* Fond animé au hover */}

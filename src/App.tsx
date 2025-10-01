@@ -8,8 +8,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useScrollToTop } from "./hooks/use-scroll-to-top";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import DeferredScripts from "./components/DeferredScripts";
-import MarketingScripts from "./components/MarketingScripts";
 
 // Lazy loading des pages
 const Home = React.lazy(() => import("./pages/Home"));
@@ -65,22 +63,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AppContent />
-        {/* Scripts marketing différés - chargement après interaction */}
-        <DeferredScripts priority="low" idle={true} delay={2000}>
-          <MarketingScripts
-            analytics={{
-              // googleAnalytics: "GA_MEASUREMENT_ID",
-              // googleTagManager: "GTM_ID",
-              // facebookPixel: "FB_PIXEL_ID"
-            }}
-            chat={{
-              // intercom: "INTERCOM_APP_ID",
-              // zendesk: "ZENDESK_KEY",
-              // tawk: "TAWK_PROPERTY_ID"
-            }}
-            priority="low"
-          />
-        </DeferredScripts>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
